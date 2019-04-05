@@ -9,6 +9,7 @@ var gulp = require('gulp'),
   sass = require('gulp-sass'),
   browserSync = require('browser-sync'),
   image = require('gulp-image');
+var deploy = require('gulp-gh-pages');
 
 /*
  * Directories here
@@ -103,3 +104,8 @@ gulp.task('build', ['sass', 'pug','image']);
  * files for changes
  */
 gulp.task('default', ['browser-sync', 'watch','build']);
+
+gulp.task('deploy', function () {
+  return gulp.src("./public/**/*")
+    .pipe(deploy())
+});
