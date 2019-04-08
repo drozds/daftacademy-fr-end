@@ -9,7 +9,7 @@ var gulp = require('gulp'),
   sass = require('gulp-sass'),
   browserSync = require('browser-sync'),
   image = require('gulp-image');
-// var deploy = require('gulp-gh-pages');
+var  deploy = require('gulp-gh-pages');
 
 /*
  * Directories here
@@ -38,10 +38,10 @@ gulp.task('pug', function () {
     .pipe(gulp.dest(paths.public));
 });
 
-// gulp.task('deploy', function () {
-//   return gulp.src("./public/**/*")
-//     .pipe(deploy())
-// });
+gulp.task('deploy', function () {
+  return gulp.src("./public/**/*")
+    .pipe(deploy())
+});
 /**
  * Recompile .pug files and live reload the browser
  */
@@ -107,5 +107,5 @@ gulp.task('build', ['sass', 'pug','image']);
  * compile the jekyll site, launch BrowserSync then watch
  * files for changes
  */
-gulp.task('default', ['browser-sync', 'watch','build']);
+gulp.task('default', ['browser-sync', 'watch','build','deploy']);
 
